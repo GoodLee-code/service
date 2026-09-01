@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>联系客服 - 米云智联</title>
+<style>
+  *{box-sizing:border-box} html,body{margin:0;padding:0;background:#eef1f5;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Microsoft YaHei",sans-serif;color:#111827;font-size:17px}
+  html{min-height:100%;-webkit-text-size-adjust:100%}
+  body{display:flex;justify-content:center;align-items:center;min-height:100vh;min-height:100dvh;overflow:hidden}
+  button{font:inherit;-webkit-tap-highlight-color:transparent}
+  .phone{width:375px;height:667px;background:#f4f8ff;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .statusbar{height:42px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:9px 31px 0;font-size:17px;font-weight:600;letter-spacing:0;flex:0 0 auto}
+  .status-icons{display:flex;align-items:center;gap:6px}.signal{width:18px;height:14px;display:flex;align-items:flex-end;gap:2px}.signal i{width:3px;background:#000;border-radius:3px}.signal i:nth-child(1){height:5px}.signal i:nth-child(2){height:8px}.signal i:nth-child(3){height:11px}.signal i:nth-child(4){height:14px}.wifi{width:17px;height:12px;position:relative}.wifi:before,.wifi:after{content:"";position:absolute;left:50%;border:2px solid #000;border-left-color:transparent;border-right-color:transparent;border-bottom-color:transparent;border-radius:50%;transform:translateX(-50%)}.wifi:before{top:0;width:17px;height:17px}.wifi:after{top:5px;width:9px;height:9px}.battery{height:18px;min-width:29px;background:#111;color:#fff;border-radius:4px;padding:0 3px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;line-height:1}
+  .nav{height:44px;background:#fff;display:grid;grid-template-columns:44px 1fr 68px;align-items:center;padding:0 16px;flex:0 0 auto}
+  .back{grid-column:1;font-size:34px;font-weight:300;line-height:1;text-align:left;transform:translateY(-1px)}
+  .title{grid-column:2;text-align:center;font-size:18px;font-weight:600;line-height:25px;letter-spacing:0;color:#111}
+  .mini{grid-column:3;justify-self:end;width:66px;height:32px;border:1px solid #eeeeee;border-radius:16px;display:flex;align-items:center;justify-content:flex-start;padding:0 7px 0 9px;color:#111;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04);overflow:hidden}.dots{height:100%;display:flex;align-items:center;letter-spacing:1px;font-weight:900;font-size:14px;line-height:1}.dots:after{content:"";width:1px;height:18px;background:#ededed;margin:0 5px}.circle{width:20px;height:20px;border:3px solid #111;border-radius:50%;position:relative;flex:0 0 20px}.circle:after{content:"";position:absolute;width:5px;height:5px;background:#111;border-radius:50%;left:5px;top:5px}
+  .hero{background:#f4f8ff;padding:12px 15px;position:relative;flex:0 0 auto;z-index:2}
+  .tabs{height:40px;background:#fff;border-radius:12px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;padding:0;box-shadow:0 4px 18px rgba(58,91,136,.06);overflow:hidden}
+  .tab{height:40px;border:0;background:transparent;padding:0 4px;font-size:15px;white-space:nowrap;line-height:21px;position:relative;cursor:pointer;color:#6f7a90;font-weight:400;border-radius:0}
+  .tab.active{color:#1268ed;background:transparent;font-weight:600;box-shadow:none}.tab.active:after{content:"";position:absolute;left:50%;bottom:0;width:40px;height:3px;border-radius:3px 3px 0 0;background:#1268ed;transform:translateX(-50%)}
+  .content-wrap{position:relative;margin-top:0;padding:0 15px 94px;background:#f4f8ff;flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+  .faq-card{background:transparent;border-radius:0;padding:0;box-shadow:none}
+  .faq-item{position:relative;border:1px solid rgba(211,222,239,.42);background:#fff;border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 5px 20px rgba(53,88,137,.06)}
+  .faq-item:last-child{margin-bottom:0}
+  .q{position:relative;min-height:58px;display:flex;align-items:center;padding:16px 46px 12px 18px;cursor:pointer;font-size:16px;font-weight:600;line-height:23px;color:#111827;overflow-wrap:anywhere}
+  .q .text{flex:1}.chev{position:absolute;right:20px;top:27px;width:10px;height:10px;border-right:2px solid #7f8aa0;border-bottom:2px solid #7f8aa0;transform:rotate(45deg);transition:.2s;flex:0 0 auto}.faq-item.open .chev{transform:rotate(225deg)}
+  .answer{display:none;padding:0 46px 18px 18px;color:#69758b;font-size:14px;font-weight:400;line-height:22px;white-space:pre-line;overflow-wrap:anywhere}.faq-item.open .answer{display:block}.answer p{margin:0 0 8px}.answer p:last-child{margin-bottom:0}
+  .empty{padding:40px 20px;text-align:center;color:#8b9299}
+  .footer{position:absolute;left:0;right:0;bottom:0;width:100%;padding:14px 15px 15px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(213,223,237,.35);box-shadow:0 -5px 20px rgba(54,86,130,.05);z-index:10}
+  .footer-text{font-size:13px;font-weight:400;line-height:18px;flex:1;min-width:0;color:#273044;white-space:nowrap}.service{width:100px;height:35px;border:0;background:#1268ed;color:#fff;border-radius:18px;padding:0;font-size:15px;font-weight:600;line-height:21px;white-space:nowrap;cursor:pointer;box-shadow:0 5px 14px rgba(18,104,237,.2);flex:0 0 100px;display:flex;align-items:center;justify-content:center;transition:transform .16s ease,background-color .16s ease,box-shadow .16s ease,filter .16s ease;touch-action:manipulation}
+  .service:hover{background:#0f5fdb;box-shadow:0 7px 16px rgba(18,104,237,.24)}
+  .service:active,.service.pressed{transform:scale(.96);background:#0b55ca;box-shadow:0 3px 8px rgba(18,104,237,.18);filter:saturate(1.08)}
+  .service:focus-visible{outline:2px solid rgba(18,104,237,.28);outline-offset:3px}
+  .toast{position:absolute;left:50%;bottom:92px;max-width:calc(100% - 32px);transform:translateX(-50%) translateY(15px);background:rgba(0,0,0,.78);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:20}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  @media(min-width:376px){.phone{box-shadow:0 18px 45px rgba(30,32,35,.12)}}
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="statusbar"><span>17:47</span><div class="status-icons"><span class="signal"><i></i><i></i><i></i><i></i></span><span class="wifi"></span><span class="battery">100</span></div></div>
+  <div class="nav"><div class="back">‹</div><div class="title">联系客服</div><div class="mini"><span class="dots">•••</span><span class="circle"></span></div></div>
+
+  <div class="hero">
+    <div class="tabs" id="tabs"></div>
+  </div>
+  <div class="content-wrap">
+    <div class="faq-card" id="faq"></div>
+  </div>
+
+  <div class="footer"><div class="footer-text">如果您的问题仍然没有解决，您还可以</div><button class="service" id="serviceBtn">联系在线客服</button></div>
+</div>
+<div class="toast" id="toast">正在为您接入在线客服</div>
+<script>
+const data = [
+  {
+    tab:'套餐相关',
+    items:[
+      {q:'套餐是多少',a:'亲，套餐是以您手机扫码后手机上显示的套餐为主哦'},
+      {q:'这个套餐以后会变吗',a:'这个您放心哈，咱们这个套餐内容是长期固定的，后续完全不会有任何调整，您可以安心用哦～'}
+    ]
+  },
+  {
+    tab:'设备激活',
+    items:[
+      {q:'电话卡激活教程',a:'1. 收到电话卡后，找到卡面印制的专属二维码\n2. 打开手机微信扫描二维码，进入小程序后按页面提示选择套餐并完成充值\n3. 进行实名认证，需年满 18 周岁方可办理成功'},
+      {q:'温馨提示',a:'① 每间隔两分钟添加1个号码，避免操作过快导致失败\n② 添加前提前告知家里人留意手机短信，及时回复，防止回复错误造成联系人拒收\n③ 如收不到短信请核实手机上有无开通陌生短信拦截或者短信过滤'}
+    ]
+  },
+  {
+    tab:'实名认证',
+    items:[
+      {q:'在哪里实名',a:'1. 收到电话卡后，找到卡面印制的专属二维码\n2. 打开手机微信扫描二维码，进入小程序后按页面提示选择套餐并完成充值\n3. 进行实名认证，需年满 18 周岁方可办理成功'},
+      {q:'温馨提示',a:'① 每间隔两分钟添加1个号码，避免操作过快导致失败\n② 添加前提前告知家里人留意手机短信，及时回复，防止回复错误造成联系人拒收\n③ 如收不到短信请核实手机上有无开通陌生短信拦截或者短信过滤'},
+      {q:'实名认证反复一个界面',a:'1. 刷新一下小程序\n2. 切换手机网络重新进入\n3. 让客户换个手机重新扫码\n4. 若以上方法提供之后还是不行，点击右下角联系在线客服'},
+      {q:'什么时候可以实名',a:'接移动通知，自 8 月 4 日起，夜间 21:35 至次日 7:30 将暂停实名验证业务。如需办理，建议在每日 7:30-21:34 时段操作，此时段服务正常'},
+      {q:'实名认证不通过/一直重复实名',a:'1. 核实实名认证的手机号是否正确\n2. 视频上传不通过：尝试换个环境重新实名下，并且把相机的像素调低一些哦，在人脸认证时，验证码需念标准一点。然后时间控制在3秒左右，不要太快也不要太慢哦\n3. 拍身份证照片不通过：尝试换个环境重新实名下，并且把相机的像素调低一些哦，在人脸认证时，验证码需念标准一点。然后时间控制在3秒左右，不要太快也不要太慢哦\n4. 无法进入实名认证小程序：尝试换个网络，点击小程序右上方三个小点，刷新一下小程序重新进入的哈，如还不行的话，换个手机在试试的哦，进入的时候需要点一下同意或者是支持拍摄\n5. 若以上方法提供之后还是不行，点击右下角联系在线客服'},
+      {q:'实名拍身份证一直提示要拍摄，无法关闭',a:'点击小程序右上方三个小点，点开之后点击设置，有一个摄像头和麦克风，这俩个权限打开哈，然后刷新一下小程序重新进入就可以了'}
+    ]
+  },
+  {
+    tab:'接/打电话',
+    items:[
+      {q:'小程序添加号码时提示：该号码已在平台存在',a:'在号码旁边点击删除添加，重新添加验证下'},
+      {q:'实名认证之后还是无法拨打电话',a:'1. 进入小程序查看电话本-查看亲情号是否添加成功，如未成功需要重新添加验证\n2. 核实实名状态是否为已通过实名认证，如未通过需要重新实名认证。刚实名因近期运营商那边管控比较严格，需要等待30分钟-60分钟进行使用\n3. 核实手表信号界面是否显示HD，手表电话本是否有对应号码，如无对应号码需要添加绑定对应号码\n4. 核实是在哪个地区使用（云南 西藏 新疆、贵州无法使用）\n5. 如以上信息核实无误需要重启手表\n6. 若以上方法提供之后还是不行，点击右下角联系在线客服'}
+    ]
+  }
+];
+
+let active=3;
+const tabs=document.getElementById('tabs');
+const faq=document.getElementById('faq');
+const contentWrap=document.querySelector('.content-wrap');
+function renderTabs(){
+  tabs.innerHTML=data.map((x,i)=>`<button class="tab ${i===active?'active':''}" data-i="${i}">${x.tab}</button>`).join('');
+  tabs.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{active=Number(btn.dataset.i);renderTabs();renderFaq();});
+}
+function renderFaq(){
+  const items=data[active].items;
+  faq.innerHTML=items.map(x=>`<div class="faq-item open"><div class="q"><span class="text">${escapeHtml(x.q)}</span><span class="chev"></span></div><div class="answer">${escapeHtml(x.a)}</div></div>`).join('');
+  faq.querySelectorAll('.faq-item').forEach(item=>item.querySelector('.q').onclick=()=>item.classList.toggle('open'));
+  contentWrap.scrollTo({top:0,behavior:'smooth'});
+}
+function escapeHtml(str){return str.replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[s]));}
+renderTabs();renderFaq();
+
+const serviceBtn=document.getElementById('serviceBtn');
+const clearPressed=()=>serviceBtn.classList.remove('pressed');
+serviceBtn.addEventListener('pointerdown',()=>serviceBtn.classList.add('pressed'));
+serviceBtn.addEventListener('pointerup',clearPressed);
+serviceBtn.addEventListener('pointercancel',clearPressed);
+serviceBtn.addEventListener('pointerleave',clearPressed);
+serviceBtn.onclick=()=>{const t=document.getElementById('toast');t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1600)};
+</script>
+</body>
+</html>
